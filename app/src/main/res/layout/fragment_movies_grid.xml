@@ -3,18 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.hardikgoswami.popularmoviesone.fragments.MoviesGridFragment">
-
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:text="@string/app_name"/>
-   <GridView
-       android:id="@+id/gridview_home_frag"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:numColumns="2"
-       android:stretchMode="columnWidth">
-
-   </GridView>
-
+    <GridView
+        android:id="@+id/gridview_home_frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"/>
 </FrameLayout>
