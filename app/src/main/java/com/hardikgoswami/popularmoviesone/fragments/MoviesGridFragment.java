@@ -49,7 +49,6 @@ public class MoviesGridFragment extends Fragment {
         return rootView;
     }
 
-
     private void updateAdapterData() {
         Call<Popular> callPopularMovies = PopularMovieApplication.getsService().getPopularMovies(PopularMovieApplication.TMDB_API_KEY);
         callPopularMovies.enqueue(new Callback<Popular>() {

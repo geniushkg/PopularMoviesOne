@@ -44,7 +44,7 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
                 .load(posterUrl)
                 .placeholder(R.drawable.progress_animation)
                 .into(holder.imageView);
-        
+
         return convertView;
     }
 
