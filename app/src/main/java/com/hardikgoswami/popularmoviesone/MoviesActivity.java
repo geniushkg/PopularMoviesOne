@@ -21,5 +21,4 @@ public class MoviesActivity extends AppCompatActivity {
         Log.d("TAG","initiating fragment");
     }
 
-
 }
