@@ -1,6 +1,5 @@
 package com.hardikgoswami.popularmoviesone.fragments;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -16,22 +15,17 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.hardikgoswami.popularmoviesone.PopularMovieApplication;
 import com.hardikgoswami.popularmoviesone.R;
 import com.hardikgoswami.popularmoviesone.model.Movie;
 import com.hardikgoswami.popularmoviesone.model.Popular;
 import com.hardikgoswami.popularmoviesone.util.MovieGridAdapter;
-
 import java.util.ArrayList;
-import java.util.List;
-
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesGridFragment extends Fragment {
+public class MoviesGridFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     public sortOrder SORT_ORDER = sortOrder.POPULAR;
     GridView gridView;
     private MovieGridAdapter mMovieGridAdapter;
@@ -39,10 +33,10 @@ public class MoviesGridFragment extends Fragment {
     public MoviesGridFragment() {
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setHasOptionsMenu(true);
     }
 
@@ -55,12 +49,11 @@ public class MoviesGridFragment extends Fragment {
         mMovieGridAdapter = new MovieGridAdapter(getContext(), new ArrayList<Movie>());
         gridView.setAdapter(mMovieGridAdapter);
         updateAdapterData();
-
         return rootView;
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
         inflater.inflate(R.menu.activity_menu, menu);
         MenuItem item = menu.findItem(R.id.spinner);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
@@ -68,22 +61,12 @@ public class MoviesGridFragment extends Fragment {
                 R.array.sort_order, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (parent.getItemAtPosition(position).toString().equalsIgnoreCase("popular")){
-                    SORT_ORDER = sortOrder.POPULAR;
-                }else {
-                    SORT_ORDER = sortOrder.TOP_RATED;
-                }
-                updateAdapterData();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getContext(),"nothing selected",Toast.LENGTH_SHORT).show();
-            }
-        });
+        spinner.setOnItemSelectedListener(this);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private void updateAdapterData() {
@@ -132,11 +115,26 @@ public class MoviesGridFragment extends Fragment {
             }
             default:
                 Log.d("TAG", "default case , sort order issue");
-
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if (parent.getItemAtPosition(position).toString().equalsIgnoreCase("popular")){
+            SORT_ORDER = sortOrder.POPULAR;
+        }else {
+            SORT_ORDER = sortOrder.TOP_RATED;
+        }
+        updateAdapterData();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        Toast.makeText(getContext(),"nothing selected",Toast.LENGTH_SHORT).show();
     }
 
     public enum sortOrder {
         TOP_RATED, POPULAR
     }
+    
 }
