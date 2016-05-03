@@ -136,5 +136,5 @@ public class MoviesGridFragment extends Fragment implements AdapterView.OnItemSe
     public enum sortOrder {
         TOP_RATED, POPULAR
     }
-    
+
 }

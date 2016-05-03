@@ -18,11 +18,17 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
+
+        if(getActionBar() != null){
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.fragment_container_movie_activity, new MoviesGridFragment());
         ft.commit();
     }
+
+
     public void switchContent(Fragment fragment){
         FragmentManager fm = getSupportFragmentManager();
         getSupportFragmentManager().beginTransaction()
@@ -31,7 +37,4 @@ public class MoviesActivity extends AppCompatActivity {
                 .commit();
     }
 
-    public void test() {
-        List<Integer> tempList = new ArrayList<>();
-    }
 }

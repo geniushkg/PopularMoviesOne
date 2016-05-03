@@ -1,6 +1,8 @@
 package com.hardikgoswami.popularmoviesone.util;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,8 @@ import com.hardikgoswami.popularmoviesone.R;
 import com.hardikgoswami.popularmoviesone.fragments.MovieDetail;
 import com.hardikgoswami.popularmoviesone.model.Movie;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -33,7 +37,7 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Movie currentMovie = getItem(position);
+        final Movie currentMovie = getItem(position);
         String posterUrl = "http://image.tmdb.org/t/p/w185" + currentMovie.getPoster_path();
 
         ViewHolder holder;
@@ -52,7 +56,12 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
-                switchFragment(new MovieDetail());
+                Parcelable wrapped = Parcels.wrap(currentMovie);
+                MovieDetail movieDetail = new MovieDetail();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("mDetail", wrapped);
+                movieDetail.setArguments(bundle);
+                switchFragment(movieDetail);
             }
         });
 
