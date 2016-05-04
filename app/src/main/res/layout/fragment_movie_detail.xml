@@ -20,7 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_movie_title"
         android:adjustViewBounds="true"
-        android:scaleType="fitStart" />
+        android:scaleType="fitStart"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"/>
     <TextView
         android:id="@+id/tv_movie_rating"
         android:layout_width="wrap_content"
@@ -37,4 +39,12 @@
         android:layout_below="@+id/tv_movie_rating"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/tv_movie_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment"
+        android:layout_below="@+id/iv_movie_detail"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>
