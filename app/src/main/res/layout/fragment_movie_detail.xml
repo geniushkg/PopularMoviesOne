@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,8 +6,35 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tv_movie_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_height="65dp"
+        android:background="@color/colorAccent"
+        android:text="@string/hello_blank_fragment"
+        android:gravity="center"
+        android:textColor="@color/colorWhite"
+        android:textSize="25dp" />
+    <ImageView
+        android:id="@+id/iv_movie_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_movie_title"
+        android:adjustViewBounds="true"
+        android:scaleType="fitStart" />
+    <TextView
+        android:id="@+id/tv_movie_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="@string/hello_blank_fragment"
+        android:layout_below="@+id/tv_movie_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/tv_movie_release_date"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="@string/hello_blank_fragment"
+        android:layout_below="@+id/tv_movie_rating"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"/>
+</RelativeLayout>

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.hardikgoswami.popularmoviesone.R;
 import com.hardikgoswami.popularmoviesone.model.Movie;
@@ -19,6 +21,9 @@ import org.parceler.Parcels;
  */
 public class MovieDetail extends Fragment {
     Movie model;
+    TextView tvTitle,tvRating,tvDate;
+    ImageView ivPoster;
+    String posterUrl,rating,date,originalTitle;
     public MovieDetail() {
         // Required empty public constructor
     }
@@ -28,8 +33,11 @@ public class MovieDetail extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            model = Parcels.unwrap(bundle.getParcelable("mDetail"));
-            Log.d("TAG","poster url is:"+model.getPoster_path());
+            model = (Movie) bundle.getParcelable("mDetail");
+            posterUrl = "http://image.tmdb.org/t/p/w185" + model.getPoster_path();
+            rating = model.getVoteAverage() + "/ 10";
+            date = model.getReleaseDate();
+            originalTitle = model.getOriginalTitle();
         }
 
     }
@@ -38,8 +46,16 @@ public class MovieDetail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View rootView =inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        tvTitle = (TextView) rootView.findViewById(R.id.tv_movie_title);
+        tvTitle.setText(originalTitle);
+        tvRating = (TextView) rootView.findViewById(R.id.tv_movie_rating);
+        tvRating.setText(rating);
+        tvDate = (TextView) rootView.findViewById(R.id.tv_movie_release_date);
+        tvDate.setText(date);
+        ivPoster = (ImageView) rootView.findViewById(R.id.iv_movie_detail);
 
-        return inflater.inflate(R.layout.fragment_movie_detail, container, false);
+        return rootView;
     }
 
 }

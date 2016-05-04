@@ -19,8 +19,6 @@ import com.hardikgoswami.popularmoviesone.fragments.MovieDetail;
 import com.hardikgoswami.popularmoviesone.model.Movie;
 import com.squareup.picasso.Picasso;
 
-import org.parceler.Parcels;
-
 import java.util.ArrayList;
 
 
@@ -56,10 +54,9 @@ public class MovieGridAdapter extends ArrayAdapter<Movie> {
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
                 public void onClick(View v) {
-                Parcelable wrapped = Parcels.wrap(currentMovie);
                 MovieDetail movieDetail = new MovieDetail();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("mDetail", wrapped);
+                bundle.putParcelable("mDetail",currentMovie);
                 movieDetail.setArguments(bundle);
                 switchFragment(movieDetail);
             }
