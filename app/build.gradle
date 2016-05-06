@@ -17,7 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         all {
-            buildConfigField 'String', 'TMDB_API', TheMovieDbApi
+            buildConfigField 'String', 'TMDB_API', System.getenv()["TheMovieDbApi"]
         }
     }
 }
