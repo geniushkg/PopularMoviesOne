@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PopularMovieApplication extends Application {
     public static final String BASE_URL ="http://api.themoviedb.org/3/";
-    public static final String TMDB_API_KEY = "361a356d738a66e728af762399fc25bd";
+    public static final String TMDB_API_KEY = BuildConfig.TMDB_API;
     private static TheMovieDbService sService;
     @Override
     public void onCreate() {
